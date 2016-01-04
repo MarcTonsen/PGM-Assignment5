@@ -3,12 +3,12 @@ function g = mrf_grad_log_student_prior(T, sigma, alpha)
 
 a = (1/sigma^2) * (T(1:m-1,:) - T(2:m,:));
 b = 1 + (1/ (2 * sigma^2)) * (T(1:m-1,:) - T(2:m,:));
-H1 = -1 * alpha * a / b;
+H1 = -1 * alpha * a ./ b;
 H2 = -1 * H1;
 
 a = (1/sigma^2) * (T(:,1:n-1) - T(:,2:n));
 b = 1 + (1/ (2 * sigma^2)) * (T(:,1:n-1) - T(:,2:n));
-V1 = -1 * alpha * a / b;
+V1 = -1 * alpha * a ./ b;
 V2 = -1 * V1;
 
 %Pad matricies with zeros for addition
