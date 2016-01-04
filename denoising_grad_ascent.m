@@ -8,11 +8,11 @@ for i = 1:iter
     g = denoising_grad_llh(T, N, sigma) + mrf_grad_log_gaussian_prior(T, sigma);
     T2 = T + eta * g;
     v2 = denoising_lp(T2, N, sigma);
-    postCurve(iter+1) = v2;
+    postCurve(i+1) = v2;
     if v2 > v
         T = T2;
     else
-        display(iter);
+        display(i);
         break;
     end
 end
