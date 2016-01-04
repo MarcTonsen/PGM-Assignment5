@@ -4,17 +4,10 @@ postCurve = zeros(iter+1,1);
 T = N;
 postCurve(1) = denoising_lp(N, N, sigma);
 for i = 1:iter
+    g_gauss = denoising_grad_llh(T, N, sigma) + mrf_grad_log_gaussian_prior(T, sigma);
+    T = T + eta * g_gauss;
     v = denoising_lp(T, N, sigma);
-    g = denoising_grad_llh(T, N, sigma) + mrf_grad_log_gaussian_prior(T, sigma);
-    T2 = T + eta * g;
-    v2 = denoising_lp(T2, N, sigma);
-    postCurve(i+1) = v2;
-    if v2 > v
-        T = T2;
-    else
-        display(i);
-        break;
-    end
+    postCurve(i+1) = v;
 end
 
 plot(postCurve(:,1));
