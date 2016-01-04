@@ -1,5 +1,5 @@
 function T = denoising_grad_ascent(N, sigma, eta)
-iter = 2000;
+iter = 5000;
 T = N;
 for i = 1:iter
     v = denoising_lp(T, N, sigma);
@@ -9,6 +9,7 @@ for i = 1:iter
     if v2 > v
         T = T2;
     else
+        i
         break;
     end
 end
