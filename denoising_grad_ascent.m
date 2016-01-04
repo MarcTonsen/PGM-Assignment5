@@ -1,5 +1,5 @@
 function T = denoising_grad_ascent(N, sigma, eta)
-iter = 5000;
+iter = 2000;
 postCurve = zeros(iter+1,1);
 T = N;
 postCurve(1) = denoising_lp(N, N, sigma);
