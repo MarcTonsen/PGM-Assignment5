@@ -5,7 +5,7 @@ RandStream.setGlobalStream(s);
 
 [m,n] = size(T);
 R = normrnd(0, sigma, m, n);
-R = uint8(round(R));
+R = round(R);
 N = T + R;
 N(N>255) = 255;
 N(N<0) = 0;
