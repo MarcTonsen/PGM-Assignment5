@@ -15,7 +15,7 @@ for i = (1:10)
     end
 end
 
-[num idx] = min(err(:));
+[num idx] = max(err(:));
 num
 [x y] = ind2sub(size(err),idx)
 

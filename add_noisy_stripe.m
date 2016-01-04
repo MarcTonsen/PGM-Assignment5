@@ -1,4 +1,7 @@
 function N = add_noisy_stripe(T, sigma, width)
+% add noisy stripe to image
+s = RandStream('mt19937ar','Seed',1);
+RandStream.setGlobalStream(s);
 
 [m,n] = size(T);
 start_stripe = round(n*rand());
