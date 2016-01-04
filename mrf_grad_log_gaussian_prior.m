@@ -3,11 +3,11 @@ function g = mrf_grad_log_gaussian_prior(T, sigma)
 [m,n] = size(T);
 a1 = (-1/sigma^2) * (T(1:m-1,:) - T(2:m,:));
 %b1 = (1/sigma^2) * (T(1:m-1,:) - T(2:m,:));
-b1 = -1 * a1;
+b1 = -a1;
 
 c1 = (-1/sigma^2) * (T(:,1:n-1) - T(:,2:n));
 %d1 = (1/sigma^2) * (T(:,1:n-1) - T(:,2:n));
-d1 = -1 * c1;
+d1 = -c1;
 
 
 % Pad matricies with zeros for addition
