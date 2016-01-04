@@ -6,6 +6,8 @@ postCurve(1) = denoising_lp(N, N, sigma);
 for i = 1:iter
     g_gauss = denoising_grad_llh(T, N, sigma) + mrf_grad_log_gaussian_prior(T, sigma);
     T = T + eta * g_gauss;
+    T(T>255) = 255;
+    T(T<0) = 0;
     v = denoising_lp(T, N, sigma);
     postCurve(i+1) = v;
 end

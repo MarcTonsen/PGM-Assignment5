@@ -6,6 +6,8 @@ T = N;
 for i = 1:iter
     g_student = denoising_grad_llh(T, N, sigma) + mrf_grad_log_student_prior(T, sigma, alpha);
     T = T + eta * g_student;
+    T(T>255) = 255;
+    T(T<0) = 0;
     %v = denoising_lp(T, N, sigma); % this evaluates only gauss prior, not
     %student
     %postCurve(i+1) = v;
