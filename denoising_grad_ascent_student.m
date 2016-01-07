@@ -4,7 +4,7 @@ postCurve = zeros(iter+1,1);
 T = N;
 grad_image = mrf_grad_log_student_prior(N, sigma, alpha);
 imshow(mat2gray(grad_image));
-waitforbuttonpress;
+%waitforbuttonpress;
 %saveas(gcf,'GradImage','png');
 postCurve(1) = denoising_lp_student(N, N, sigma, alpha);
 for i = 1:iter
@@ -17,6 +17,6 @@ for i = 1:iter
 end
 
 plot(postCurve(:,1));
-saveas(gcf,'LogPostCurve_student','png');
+%saveas(gcf,'LogPostCurve_student','png');
 
 end

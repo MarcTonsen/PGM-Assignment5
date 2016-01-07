@@ -13,7 +13,7 @@ for i = 1:iter
 end
 
 plot(postCurve(:,1));
-waitforbuttonpress;
+%waitforbuttonpress;
 %saveas(gcf,'LogPostCurve_gauss','png');
 
 end
