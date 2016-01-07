@@ -12,8 +12,9 @@ for i = 1:iter
     postCurve(i+1) = v;
 end
 
-%plot(postCurve(:,1));
-saveas(gcf,'LogPostCurve_gauss','png');
+plot(postCurve(:,1));
+waitforbuttonpress;
+%saveas(gcf,'LogPostCurve_gauss','png');
 
 end
 

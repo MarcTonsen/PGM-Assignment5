@@ -1,0 +1,26 @@
+Varying noise for median filter
+We have included noisy images and the corresponding filter results for sigma values 5 and 50. The smaller sigma, the smoother the filtered image becomes. Natural images usually contain smooth areas in which the median filters deletes any high frequencies. If there is a lot of noise in an image the result looks less smooth and more like there is still noise left, which makes sense since also the median in each window can shift significantly if the noise is strong, so there is often a big difference for pixels even with overlapping windows.
+
+
+Parameter Tuning
+We picked sigma as 10 and eta as 0.1. For bigger sigma the images tend to not get denoised at all. For smaller sigma the computed result is very far off from the ground truth image. For smaller values of eta the gradient ascent did not always converge. For bigger values of eta the gradient ascent converged quicker, but the achieved PSNR value of the result was lower.
+
+
+Median filter vs Gauss MRF
+For the salt and pepper noise the median filter works a lot better, which makes sense since this kind of noise only affects a few single pixes, which leaves the median in the filtering window mostly intact. The Gauss MRF only adds blur to the images resulting in no great effect. On the natural image the median filter adds a lot of blur, deleting all the noise but also many image features. The Gauss MRF works better on natural images, leaving more image features intact. These observations are verified if one consideres the PSNR values, which also indicate that for the salt and pepper noise the Median filter is better and for the gaussian noise the Gauss MRF is better.
+
+
+Initializing gradient ascent with the result of the median filter
+According to the PSNR values this approach works better for the artificial videos and worse for the real image. The visual impression for us was mostly an additional slight blur in all cases. In terms of performance the gradient ascent converged slower if we initialized it with the result of the median filter in all cases.
+
+
+PSNR Values
+		Noisy Original	Median		Gauss MRF	Median + Gauss MRF
+Stripes		13.3348		29.7881		18.9248		22.5530
+
+Checker		13.4872		26.6421		17.9571		20.5386
+
+Image		23.5804		24.1984		25.0029		23.2165
+
+		
+
