@@ -18,7 +18,7 @@ imshow(mat2gray(RS_student));
 %imwrite(RS_student/255,'ex5_stripes_mrf_student_filtered.png');
 
 % Checkerboard
-TC = toy_checkerboard(100,50, [25 30]);
+TC = toy_checkerboard(100,60, [25 30]);
 NC = add_noisy_stripe(TC,30,20);
 RC_gauss = denoising_grad_ascent(NC,sigma,eta);
 RC_student = denoising_grad_ascent_student(NC,sigma,eta,alpha);

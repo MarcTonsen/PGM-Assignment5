@@ -6,7 +6,7 @@ stripes_filtered = median_filter(stripes_noise, 5);
 %imwrite(stripes_filtered,'ex2_stripes_median_filter.png');
 stripes_err = calc_psnr(stripes,stripes_filtered)
 
-checker = toy_checkerboard(100, 50, [25 30]);
+checker = toy_checkerboard(100, 60, [25 30]);
 %imwrite(checker,'ex2_checker_ground_truth.png');
 checker_noise = add_sp_noise(checker, 0.1);
 %imwrite(checker_noise,'ex2_checker_noisy.png');

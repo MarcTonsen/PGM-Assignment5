@@ -15,7 +15,7 @@ RS2 = denoising_grad_ascent(NS2, sig, eta);
 errS2 = calc_psnr(TS,RS2) 
 
 % Checkerboard
-TC = toy_checkerboard(100,50, [25 30]);
+TC = toy_checkerboard(100,60, [25 30]);
 NC = add_sp_noise(TC, 0.1);
 RC = denoising_grad_ascent(NC, sig, eta);
 %imwrite(mat2gray(RC), 'ex3_checker_mrf_gaussian_filter.png');

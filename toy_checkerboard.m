@@ -10,11 +10,11 @@ for i = [0:ceil(n/cSize(1))-1]
             if mod(j, 2) == 0
                 continue;
             else
-                img(j * cSize(2) + 1: (j+1) * cSize(2), i * cSize(1) + 1: (i+1) * cSize(1)) = 255;
+                img(j * cSize(2) + 1: min(m,(j+1) * cSize(2)), i * cSize(1) + 1: min(n,(i+1) * cSize(1))) = 255;
             end
         else
             if mod(j, 2) == 0
-                img(j * cSize(2) + 1: (j+1) * cSize(2), i * cSize(1) + 1: (i+1) * cSize(1)) = 255;
+                img(j * cSize(2) + 1: min(m, (j+1) * cSize(2)), i * cSize(1) + 1: min(n,(i+1) * cSize(1))) = 255;
             else
                 continue;
             end
