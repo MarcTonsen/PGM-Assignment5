@@ -110,6 +110,9 @@
 \captionof{figure}{Image with Gaussian noise and $\sigma = 5$ (left), $\sigma = 25$ (middle) and $\sigma = 50$ (right) median filtered.}
 }
 
+\subsection*{Observation}
+For the artificial images the noise was completely deleted except for some small artifacts. In the natural image the denoising also gave a good result, although the image was significantly blurred. In all images edges are preserved. The PSNR values (see Table~\ref{tab:psnr}) all increased significantly for the denoised versions, especially for the artificial images.
+
 \subsection*{Varying noise for median filter}
 We have included noisy images and the corresponding filter results for sigma values 5 and 50. The smaller sigma, the smoother the filtered image becomes. Natural images usually contain smooth areas in which the median filters deletes any high frequencies. If there is a lot of noise in an image the result looks less smooth and more like there is still noise left, which makes sense since also the median in each window can shift significantly if the noise is strong, so there is often a big difference for pixels even with overlapping windows.
 
@@ -123,18 +126,19 @@ We have included noisy images and the corresponding filter results for sigma val
  Image & 20.4622 & 24.1984 & 25.0029 & 23.2165 & 23.5804 \\ \hline
 \end{tabular}
 \captionof{table}{PSNR for different denoising approaches.}
+\label{tab:psnr}
 }  
 
 \section*{Exercise 3}
 
 \subsection*{Parameter Tuning}
-We picked $\sigma$ as 10 and $\eta$ as 0.1. For bigger sigma the images tend to not get denoised at all. For smaller sigma the computed result is very far off from the ground truth image. For smaller values of eta the gradient ascent did not always converge. For bigger values of eta the gradient ascent converged quicker, but the achieved PSNR value of the result was lower.
+We picked $\sigma$ as 10 and $\eta$ as 0.1. For bigger sigma the images tend to not get denoised at all. For smaller sigma the computed result is very far off from the ground truth image. For smaller values of eta the gradient ascent did not always converge. For bigger values of eta the gradient ascent converged quicker, but the achieved PSNR value (see Table~\ref{tab:psnr}) of the result was lower.
 
 \subsection*{Median filter vs Gauss MRF}
 For the salt and pepper noise the median filter works a lot better, which makes sense since this kind of noise only affects a few single pixes, which leaves the median in the filtering window mostly intact. The Gauss MRF only adds blur to the images resulting in no great effect. On the natural image the median filter adds a lot of blur, deleting all the noise but also many image features. The Gauss MRF works better on natural images, leaving more image features intact. These observations are verified if one consideres the PSNR values, which also indicate that for the salt and pepper noise the Median filter is better and for the gaussian noise the Gauss MRF is better.
 
 \subsection*{Initializing gradient ascent with the result of the median filter}
-According to the PSNR values this approach works better for the artificial videos and worse for the real image. The visual impression for us was mostly an additional slight blur in all cases. In terms of performance the gradient ascent converged slower if we initialized it with the result of the median filter in all cases.
+According to the PSNR values (see Table~\ref{tab:psnr}) this approach works better for the artificial videos and worse for the real image. The visual impression for us was mostly an additional slight blur in all cases. In terms of performance the gradient ascent converged slower if we initialized it with the result of the median filter in all cases.
 
 \vspace{1cm}
 {
@@ -203,7 +207,7 @@ The overall convergence is slower than when using the Gaussian prior in exercise
 }
 
 \subsection*{Performance}
-Although there is a slight improvement in PSNR when denoising the artifical images, this difference is not visible when looking at the images. This can be explained by the fact that the Student-t prior is suited for natural images but not for artificial ones.
+Although there is a slight improvement in PSNR (see Table~\ref{tab:psnr}) when denoising the artifical images, this difference is not visible when looking at the images. This can be explained by the fact that the Student-t prior is suited for natural images but not for artificial ones.
 For the real image, the PSNR improves significantly. The difference is also visible when comparing the images. Overall, the result is less noisy and especially not as blurry as the result when using the Gaussian prior. Edges and also face features are maintained better.
 
 {
