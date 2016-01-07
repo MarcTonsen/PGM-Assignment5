@@ -36,6 +36,6 @@ errI = calc_psnr(TI,RI)
 
 NI2 = median_filter(NI, 5);
 RI2 = denoising_grad_ascent(NI2, sig, eta);
-%imwrite(mat2gray(RI2), 'ex3_stripes_median_into_mrf_gaussian_filter.png');
+%imwrite(mat2gray(RI2), 'ex3_image_median_into_mrf_gaussian_filter.png');
 errI2 = calc_psnr(TI,RI2)
 
