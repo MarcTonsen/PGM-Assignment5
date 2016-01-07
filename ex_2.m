@@ -9,7 +9,9 @@ checker_filtered = median_filter(checker_noise, 5);
 imshow(mat2gray(checker_filtered));
 
 img = imread('la.png');
+img = double(img);
 img_noise = add_noise(img, 25);
 imshow(mat2gray(img_noise));
 img_filtered = median_filter(img_noise, 5);
+waitforbuttonpress;
 imshow(mat2gray(img_filtered));
