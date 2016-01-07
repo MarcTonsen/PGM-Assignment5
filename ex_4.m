@@ -1,25 +1,35 @@
-%Stripes 
-%T = toy_stripes(40,20, 4);
-T1 = imread('la.png');
-%N = add_sp_noise(T, 0.1);
-N = add_noise(T, 30);
+% Parameters
+sig = 10;
+eta = 0.1;
+alpha = 1;
 
+% Stripes
+TS = toy_stripes(100,50, 25);
+NS = add_sp_noise(TS, 0.1);
+RS = denoising_grad_ascent_student(NS, sig, eta, alpha);
+errS = calc_psnr(TS,RS);
+imshow(mat2gray(RS));
+waitforbuttonpress;
+imwrite(RS/255,'ex4_stripes_mrf_student_filtered.png');
 
-sig = [0.01, 0.5, 1, 2, 3, 4, 5, 6, 7, 10, 15, 25, 50, 100];
-mu = [0.1, 0.5, 1, 2, 5, 10, 12, 14, 15, 17, 20, 25, 50, 100];
-for i = (1:5)
-    for j = (1:5)
-        R = denoising_grad_ascent_student(N, 10^(i-2), 10^(j-2), 1);
-        err(i,j) = calc_psnr(T, R);
-        imshow(mat2gray(R));
-        waitforbuttonpress;
-    end
-end
+% Checkerboard
+TC = toy_checkerboard(100,50, [25 30]);
+NC = add_sp_noise(TC, 0.1);
+RC = denoising_grad_ascent_student(NC, sig, eta, alpha);
+errC = calc_psnr(TC,RC);
+imshow(mat2gray(RC));
+waitforbuttonpress;
+imwrite(RC/255,'ex4_checker_mrf_student_filtered.png');
 
-[num idx] = max(err(:));
-num
-[x y] = ind2sub(size(err),idx)
+% Image
+TI = imread('la.png');
+TI = double(TI);
+NI = add_noise(TI, 25);
+RI = denoising_grad_ascent(NI, sig, eta);
+errI = calc_psnr(TI,RI);
+imshow(mat2gray(RI));
+waitforbuttonpress;
+imwrite(RI/255,'ex4_image_mrf_student_filtered.png');
 
-R = denoising_grad_ascent_student(N, sig(x), mu(y), 1);
-err = calc_psnr(T, R)
-imshow(mat2gray(R));
+display('PSNR for stripes, checkerboard, image:');
+display([errS errC errI]);

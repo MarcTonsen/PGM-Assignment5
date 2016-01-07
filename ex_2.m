@@ -18,3 +18,4 @@ img_noise = add_noise(img, 25);
 imwrite(uint8(img_noise),'ex2_image_noisy.png');
 img_filtered = median_filter(img_noise, 5);
 imwrite(uint8(img_filtered),'ex2_image_median_filter.png');
+
