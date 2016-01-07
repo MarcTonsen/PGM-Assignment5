@@ -1,0 +1,18 @@
+Parameter Tuning
+We picked sigma as 10 and eta as 0.1. For bigger sigma the images tend to not get denoised at all. For smaller sigma the computed result is very far off from the ground truth image. For smaller values of eta the gradient ascent did not always converge. For bigger values of eta the gradient ascent converged quicker, but the achieved PSNR value of the result was lower.
+
+
+Initializing gradient ascent with the result of the median filter
+According to the PSNR values this approach works better for the artificial videos and worse for the real image. The visual impression for us was mostly an additional slight blur in all cases. In terms of performance the gradient ascent converged slower if we initialized it with the result of the median filter in all cases.
+
+
+PSNR Values
+		Noisy		Median		Gauss MRF	Median + Gauss MRF
+Stripes		13.3348		29.7881		18.9248		22.5530
+
+Checker		13.4872		26.6421		17.9571		20.5386
+
+Image		23.5804		24.1984		25.0029		23.2165
+
+		
+
