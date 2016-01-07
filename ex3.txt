@@ -1,0 +1,12 @@
+Parameter Tuning
+We picked sigma as 10 and eta as 0.1. For bigger sigma the images tend to not get denoised at all. For smaller sigma the computed result is very far off from the ground truth image. For smaller values of eta the gradient ascent did not always converge. For bigger values of eta the gradient ascent converged quicker, but the achieved PSNR value of the result was lower.
+
+
+PSNR Values
+		Only Gauss MRF		Median + Gauss MRF
+Stripes		18.9248			22.5530
+
+Checker		17.9571			20.5386
+
+Image		25.0029			23.2165
+

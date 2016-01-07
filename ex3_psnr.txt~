@@ -1,0 +1,9 @@
+PSNR Values
+
+		Only Gauss MRF		Median + Gauss MRF
+Stripes		18.9248			22.5530
+
+Checker		17.9571			20.5386
+
+Image		25.0029			23.2165
+
