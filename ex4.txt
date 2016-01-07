@@ -1,0 +1,15 @@
+PSNR-values
+- stripes:  noisy 13.3348, denoised 13.4212
+- checkerboard: noisy 13.4040, denoised 13.4872
+- image: noisy 20.4622, denoised 23.5804
+
+Convergence:
+The overall convergence is slower than when using the Gaussian prior in exercise 3. It takes the full 2000 iterations to approximately converge. 
+
+Performance:
+Although there is a slight improvement in PSNR when denoising the artifical images, this difference is not visible when looking at the images. This can be explained by the fact that the Student-t prior is suited for natural images but not for artificial ones.
+For the real image, the PSNR improves significantly. The difference is also visible when comparing the images. Overall, the result is less noisy and especially not as blurry as the result when using the Gaussian prior. Edges and also face features are maintained better.
+
+Gradients of the student prior:
+- artificial images: The gradient of the student prior has a high absolute value in the noisy pixels. The direction of the gradient is opposite for noisy salt-pixels in a black area and noisy pepper-pixels in a white area of the image. That is because the pixel values have to change in opposite directions (increase, decrease) to achieve a better value in the student prior that wants to make pixels similar to their neighbors. Therefore, also the gradient at the edges of the stripes or the checkerboard is stronger but not as strong as in the noisy pixels since roughly half of the neighbors have the same color.
+- real image: The gradient in the real image looks in most regions more or less random what also makes sense because the Gaussian noise was random. Only in edge regions, the gradient is significantly less strong. That matches the result that the edges are less blurry when using this filtering technique. 
