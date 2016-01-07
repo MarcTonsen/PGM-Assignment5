@@ -1,0 +1,8 @@
+Reasonable assumption?
+This depends on the noise type that is present in the image. Noise can be added for example as salt-and-pepper noise caused by transmission errors or defects in the camera sensor. In this case, only some pixels are affected randomly and therefore the noise is independent.
+In the digitization of old movies, film grain noise occurs in lines, so the noise is not independent.
+Overall, in many applications the assumption is reasonable.
+
+What happens?
+- Gaussian prior: When using the Gaussian prior, the whole image is blurred. This reduces the noise in the area of the stripe but blurrs also all edges in the remaining image.
+- Student prior: Noisy pixels whose values do not differ so much from the true value are denoised properly. More intense noise remains. But other regions of the images (not affected by the noisy stripe) are barely changed.

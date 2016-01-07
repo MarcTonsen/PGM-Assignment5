@@ -1,0 +1,3 @@
+There are several ways to denoise a color image.
+One idea is to denoise the different channels of the image separately using the same techniques that we used for grey value images.
+One could also use another color space, like HSV, where the color can be more easily split into color and brightness information (color noise is more disturbing than brightness noise for the human). 
