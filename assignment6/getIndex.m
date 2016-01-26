@@ -39,4 +39,5 @@ function idx = getIndex(s1, s2)
     [res, idx] = ismember(g, indicies);
     if res == 0
         display('Something went wrong in Index Search');
+    end
 end
