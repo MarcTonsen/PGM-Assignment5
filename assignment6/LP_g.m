@@ -11,7 +11,7 @@ obj = zeros(N,1);
 
 % fill matrix A and objective function
 for j=1:n % first constraint set
-    obj(getIndex5Vars([],j)) = -1;
+    obj(getIndex5Vars([],j)) = 1;
     
     A(j, getIndex5Vars(j,[])) = 1;
     A(j, getIndex5Vars([],j)) = -1;
@@ -30,7 +30,7 @@ for l=1:binCoeff % second constraint set
     j = jkSets(l,1);
     k = jkSets(l,2);
     
-    obj(getIndex5Vars([],[j,k])) = -1;
+    obj(getIndex5Vars([],[j,k])) = 1;
     
     A(n+l,getIndex5Vars([],[j,k])) = 1;
     A(n+l,getIndex5Vars([j,k],[])) = 1;
@@ -40,4 +40,4 @@ end
 
 % solve floor dual
 [c,fval] = linprog(obj,[],[],A,b,lowerBound,[]);
-floorDualVal = fval - 1; % fval + c_0
+floorDualVal = -fval - 1; % = fval (of maximization) + c_0
