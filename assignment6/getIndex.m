@@ -25,14 +25,14 @@ function idx = getIndex(s1, s2)
     if length(s1) == 1
         str1 = int2str(s1(1));
     elseif length(s1) == 2
-        str1 = int2str(min(s1)) + int2str(max(s1));
+        str1 = strcat(int2str(min(s1)), int2str(max(s1)));
     end
     
     str2 = '';
     if length(s2) == 1
         str2 = int2str(s2(1));
     elseif length(s2) == 2
-        str2 = int2str(min(s2)) + int2str(max(s2));
+        str2 = strcat(int2str(min(s2)), int2str(max(s2)));
     end
     
     g = strcat(strcat(str1, ','),str2);
