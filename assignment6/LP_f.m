@@ -1,4 +1,7 @@
-% this script states and solves the floor dual for function f
+% this script states and solves the floor dual for function f. The Ordering
+% of the indicies in the Matrix is given by the functions getIndex and
+% getSets. The coefficiants are in the variable c except for
+% c_emptySet_emptySet which is given in floorDualVal!
 n = 4; % number of variables
 binCoeff = nchoosek(n,2);
 N = 2*n + n*(n-1) + 2*binCoeff;
