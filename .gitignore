@@ -1,0 +1,7 @@
+# ignore latex compile files
+*.log
+*.synctex.gz
+*.aux
+
+# mac files
+*.DS_Store

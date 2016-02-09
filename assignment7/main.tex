@@ -16,7 +16,7 @@
 	\end{equation}
 	We know by the definition of $f'$ that for all $e = uw\in E$ for which neither $uw$ nor $wu$ are included in the augmenting path $p$
 	$$f'(e) = f(e)$$
-	and therefore $\varphi_v^{+} ' = \varphi_v^+ '$, $\varphi_v^- ' = \varphi_v^- '$ and also $\varphi_v' = \varphi_v^+' - \varphi_v^-' = \varphi_v^+ - \varphi_v^- = \varphi_v$ for all $v \in V$ that are neither $s$ or $t$ or included in $p$. \\
+	and therefore $\varphi_v^{+\prime}  = \varphi_v^{+} $, $\varphi_v^{-\prime} = \varphi_v^-$ and also $\varphi_v' = \varphi_v^{+\prime} - \varphi_v^{-\prime} = \varphi_v^+ - \varphi_v^- = \varphi_v$ for all $v \in V$ that are neither $s$ or $t$ or included in $p$. \\
 	Let $v \in V$ be a node from the augmented path p but not $s$ or $t$. Since the path starts in $s$ and ends in $t$, $v$ must be an intermediate node, i.e. the path is of the form $..., uv, vw,...$ for some $u$ and $w$.  Now we distinguish 4 cases:
 	\begin{enumerate}
 		\item $uv \in E$ and $vw \in E$ \\
@@ -35,7 +35,7 @@
 		Then by definition of $f'$ we have $f'(vu) = f(vu) - \delta$ and $f'(wv) = f(wv) - \delta$. For all other edges including $v$, the flow remains the same, since $p$ is a simple path. Thus 
 		$$\varphi_v' = (\varphi_v^+ - \delta) - (\varphi_v^- - \delta) = \varphi_v$$
 	\end{enumerate}
-	Thus, equation~\ref{eq:flux_same} holds. Now consider the last edge $v_nw_n$ in the path $p$. It must hold that $v_n_w_n = v_nt$ since $p$ ends in $t$. Also since $p$ is a simple path, $t$ does not appear in any other edge in $p$. By definition of $f'$ the flow remains the same for all other edges including $t$ except $v_nt$ (or $tv_n$ if $v_nt \in E^-$). Now distinguish 2 cases:
+	Thus, equation~\ref{eq:flux_same} holds. Now consider the last edge $v_nw_n$ in the path $p$. It must hold that $v_nw_n = v_nt$ since $p$ ends in $t$. Also since $p$ is a simple path, $t$ does not appear in any other edge in $p$. By definition of $f'$ the flow remains the same for all other edges including $t$ except $v_nt$ (or $tv_n$ if $v_nt \in E^-$). Now distinguish 2 cases:
 	\begin{enumerate}
 		\item $v_nt \in E$ \\
 		Then by definition of $f'$ we have $f'(v_nt) = f(v_nt) + \delta$. Therefore $\varphi_t' = \varphi_t - \delta$
