@@ -1,0 +1,106 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[latin1]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\begin{document}
+	\section{Lemma 3}
+	Let $N = (V, E, s, t, c)$ be a network  and $f$ an $st$-preflow in N.  Assume that an $n \in \mathbb{N}$  and an  augmenting path $p = (v_1w_1, ... ,v_nw_n)$ of $f$ exists. \\\\
+	
+	\subsection*{Show that if $f$ is a (pre-)flow than $f'$ is also a (pre-)flow}
+	First we show
+	\begin{equation}
+	\label{eq:flux_same}
+	\forall v \in V\backslash\{s,t\}: \varphi_v' = \varphi_v
+	\end{equation}
+	We know by the definition of $f'$ that for all $e = uw\in E$ for which neither $uw$ nor $wu$ are included in the augmenting path $p$
+	$$f'(e) = f(e)$$
+	and therefore $\varphi_v^{+} ' = \varphi_v^+ '$, $\varphi_v^- ' = \varphi_v^- '$ and also $\varphi_v' = \varphi_v^+' - \varphi_v^-' = \varphi_v^+ - \varphi_v^- = \varphi_v$ for all $v \in V$ that are neither $s$ or $t$ or included in $p$. \\
+	Let $v \in V$ be a node from the augmented path p but not $s$ or $t$. Since the path starts in $s$ and ends in $t$, $v$ must be an intermediate node, i.e. the path is of the form $..., uv, vw,...$ for some $u$ and $w$.  Now we distinguish 4 cases:
+	\begin{enumerate}
+		\item $uv \in E$ and $vw \in E$ \\
+		Then by definition of $f'$ we have $f'(uv) = f(uv) + \delta$ and $f'(vw) = f(vw) + \delta$. For all other edges including $v$, the flow remains the same, since $p$ is a simple path. Thus 
+		$$\varphi_v' = (\varphi_v^+ + \delta) - (\varphi_v^- + \delta) = \varphi_v$$
+		
+		\item $uv \in E$ and $wv \in E$
+		Then by definition of $f'$ we have $f'(uv) = f(uv) + \delta$ and $f'(wv) = f(wv) - \delta$. For all other edges including $v$, the flow remains the same, since $p$ is a simple path. Thus 
+		$$\varphi_v' = \varphi_v^+ - (\varphi_v^- + \delta - \delta)= \varphi_v$$
+
+		\item $vu \in E$ and $vw \in E$ \\
+		Then by definition of $f'$ we have $f'(vu) = f(vu) - \delta$ and $f'(vw) = f(vw) + \delta$. For all other edges including $v$, the flow remains the same, since $p$ is a simple path. Thus 
+		$$\varphi_v' = (\varphi_v^+ + \delta - \delta) - \varphi_v^- = \varphi_v$$
+		
+		\item $vu \in E$ and $wv \in E$ \\
+		Then by definition of $f'$ we have $f'(vu) = f(vu) - \delta$ and $f'(wv) = f(wv) - \delta$. For all other edges including $v$, the flow remains the same, since $p$ is a simple path. Thus 
+		$$\varphi_v' = (\varphi_v^+ - \delta) - (\varphi_v^- - \delta) = \varphi_v$$
+	\end{enumerate}
+	Thus, equation~\ref{eq:flux_same} holds. Now consider the last edge $v_nw_n$ in the path $p$. It must hold that $v_n_w_n = v_nt$ since $p$ ends in $t$. Also since $p$ is a simple path, $t$ does not appear in any other edge in $p$. By definition of $f'$ the flow remains the same for all other edges including $t$ except $v_nt$ (or $tv_n$ if $v_nt \in E^-$). Now distinguish 2 cases:
+	\begin{enumerate}
+		\item $v_nt \in E$ \\
+		Then by definition of $f'$ we have $f'(v_nt) = f(v_nt) + \delta$. Therefore $\varphi_t' = \varphi_t - \delta$
+		
+		\item $tv_n \in E$ \\
+		Then by definition of $f'$ we have $f'(tv_n) = f(tv_n) - \delta$. Therefore $\varphi_t' = \varphi_t - \delta$
+	\end{enumerate}
+	Thus it holds in general that 
+	\begin{equation}
+	\label{eq:flux_smaller_t}
+	\varphi_t' = \varphi_t - \delta
+	\end{equation}
+	Thus from \ref{eq:flux_same} and \ref{eq:flux_smaller_t} it also holds that
+		\begin{align}
+		\label{eq:flux_cond_satis}
+		f~\text{is st-preflow} \Rightarrow \forall v \in V \backslash \{s\}. \quad \varphi_v' 
+		\begin{cases}
+		= \varphi_v - \delta \leq 0, \quad \text{if } v=t\\
+		= \varphi_v \leq 0,  \quad \text{else} \\
+		\end{cases} \\
+		f~\text{is st-flow} \Rightarrow \forall v \in V \backslash \{s,t\}. \quad  
+		\varphi_v' = \varphi_v = 0 
+		\end{align}
+		
+	As mentioned before $f'(e) = f(e)$ for all $e = uw \in E$ such that neither $uw$ nor $wu$ are included in the path by the definition of $f'$. For all other edges consider the following two cases:
+	\begin{enumerate}
+		\item $uw \in E$ \\
+		Then $f'(uw) = f(uw) + \delta$. We know that $f(uw) \geq 0$ and $\delta \in \mathbb{N}$. Thus the sum is greater equal 0 too. Also $f(uw) + \delta \leq f(uw) + c_{uw}' = f(uw) + c_{uw} - f(uw) = c_{uw}$ by the definition of $\delta$. Together we have $0 \leq f'(uw) \leq c_{uw}$.
+		
+		\item $wu \in E$ \\
+		Then $f'(uw) = f(uw) - \delta$. We know that $f(uw) \leq c_{uw}$ and $\delta \in \mathbb{N}$. Thus the difference is smaller equal $c_{uw}$ too. Also $f(uw) - \delta \geq f(uw) - c_{uw}' = f(uw) - f(uw) = 0$ by the definition of $\delta$. Together we have $0 \leq f'(uw) \leq c_{uw}$.
+	\end{enumerate}
+	Thus it generally holds that
+	\begin{equation}
+	\label{eq:flow_cond_satis}
+	\forall e \in E: 0 \leq f_e' \leq c_e
+	\end{equation}
+	From \ref{eq:flux_cond_satis} and \ref{eq:flow_cond_satis} we can now conclude that
+	$$ f \text{is st-preflow} \Rightarrow f' \text{is st-preflow}$$
+	$$ f \text{is st-flow} \Rightarrow f' \text{is st-flow}$$
+	\hfill $\blacksquare$
+	
+	\subsection*{Show that $\varphi_s' = \varphi_s + \delta$}
+	Similar to the proof of \ref{eq:flux_smaller_t}, we know that $v_1w_1 = sw_1$. Again, since $p$ is a simple path, $s$ does not appear in any other edge in $p$. Hence, $f'$ remains the same for all edges involving $s$ except $sw_1$ (or $w_1s$ if $sw_1 \in E^-$) by definition. We consider 2 cases:
+	\begin{enumerate}
+		\item $sw_1 \in E$ \\
+		By definition of $f'$, we have $f'(sw_1) = f(sw_1) + \delta$. Therefore $\varphi_s' = \varphi_s + \delta$.
+		\item $w_1s \in E$ \\
+		By definition of $f'$, we have $f'(w_1s) = f(w_1s) - \delta$. Therefore $\varphi_s' = \varphi_s + \delta$.
+	\end{enumerate} \hfill $\blacksquare$
+	
+	\section{Lemma 5}
+	\begin{align*}
+	\varphi_s &= \varphi_s + \varphi_{X\backslash\{s\}} &\text{using }\varphi_{X\backslash\{s\}} = 0~ \text{because }f~\text{is st-flow and }t \notin X\\
+	&= \varphi_X & \text{by definition of }\varphi_X\\
+	&= \varphi_X^+ - \varphi_X^- & \text{by definition of flux} \\
+	&\leq \varphi_X^+ &\text{using }\varphi_X^- \geq 0~\text{because }\forall e\in E. f_e \geq 0 \\
+	&= \sum_{vw \in XX^c} f_{vw} &\text{by definition of }\varphi_X^+ \\
+	&\leq \sum_{vw \in XX^c} c_{vw} &\text{because }\forall e \in E. f_e \leq c_e \\
+	\end{align*} \hfill $\blacksquare$
+	
+	\section{Discussion of Lemma 5}
+	If $f$ is just an st-preflow, the lemma does not hold. 
+	That is the case because nodes in $X$ between $s$ and $t$ can "absorb" flow (flux can be $\leq 0$). Counter-example: \\
+	Consider the following network: $s \rightarrow^{10} v \rightarrow^{1} t$ where the numbers at the edges are the capacities.
+	A valid st-preflow is specified by $f(sv) = 10, f(vt) = 1$ with $\varphi_v = -9 \leq 0$.
+	Choose as cutset $X = \{s,v\}$. Then $\sum_{vw \in XX^c} c_{vw} = 1 < 10 = \varphi_s$.
+\end{document}
