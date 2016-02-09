@@ -16,14 +16,14 @@
 	\end{equation}
 	We know by the definition of $f'$ that for all $e = uw\in E$ for which neither $uw$ nor $wu$ are included in the augmenting path $p$
 	$$f'(e) = f(e)$$
-	and therefore $\varphi_v^{+\prime}  = \varphi_v^{+} $, $\varphi_v^{-\prime} = \varphi_v^-$ and also $\varphi_v' = \varphi_v^{+\prime} - \varphi_v^{-\prime} = \varphi_v^+ - \varphi_v^- = \varphi_v$ for all $v \in V$ that are neither $s$ or $t$ or included in $p$. \\
-	Let $v \in V$ be a node from the augmented path p but not $s$ or $t$. Since the path starts in $s$ and ends in $t$, $v$ must be an intermediate node, i.e. the path is of the form $..., uv, vw,...$ for some $u$ and $w$.  Now we distinguish 4 cases:
+	and therefore $\varphi_v^{+\prime}  = \varphi_v^{+} $, $\varphi_v^{-\prime} = \varphi_v^-$ and also $\varphi_v' = \varphi_v^{+\prime} - \varphi_v^{-\prime} = \varphi_v^+ - \varphi_v^- = \varphi_v$ for all $v \in V$ that are neither $s$ or $t$ nor included in $p$. \\
+	Let $v \in V$ be a node from the augmenting path $p$ but not $s$ or $t$. Since the path starts in $s$ and ends in $t$, $v$ must be an intermediate node, i.e. the path is of the form $..., uv, vw,...$ for some $u$ and $w$.  Now we distinguish 4 cases:
 	\begin{enumerate}
 		\item $uv \in E$ and $vw \in E$ \\
 		Then by definition of $f'$ we have $f'(uv) = f(uv) + \delta$ and $f'(vw) = f(vw) + \delta$. For all other edges including $v$, the flow remains the same, since $p$ is a simple path. Thus 
 		$$\varphi_v' = (\varphi_v^+ + \delta) - (\varphi_v^- + \delta) = \varphi_v$$
 		
-		\item $uv \in E$ and $wv \in E$
+		\item $uv \in E$ and $wv \in E$ \\
 		Then by definition of $f'$ we have $f'(uv) = f(uv) + \delta$ and $f'(wv) = f(wv) - \delta$. For all other edges including $v$, the flow remains the same, since $p$ is a simple path. Thus 
 		$$\varphi_v' = \varphi_v^+ - (\varphi_v^- + \delta - \delta)= \varphi_v$$
 
@@ -48,13 +48,13 @@
 	\label{eq:flux_smaller_t}
 	\varphi_t' = \varphi_t - \delta
 	\end{equation}
-	Thus from \ref{eq:flux_same} and \ref{eq:flux_smaller_t} it also holds that
+	Hence from \ref{eq:flux_same} and \ref{eq:flux_smaller_t} it also holds that
 		\begin{align}
 		\label{eq:flux_cond_satis}
-		f~\text{is st-preflow} \Rightarrow \forall v \in V \backslash \{s\}. \quad \varphi_v' 
+		f~\text{is st-preflow} \Rightarrow \forall v \in V \backslash \{s\}. \quad \varphi_v' =
 		\begin{cases}
-		= \varphi_v - \delta \leq 0, \quad \text{if } v=t\\
-		= \varphi_v \leq 0,  \quad \text{else} \\
+		\varphi_v - \delta \leq 0, \quad \text{if } v=t\\
+		\varphi_v \leq 0,  \quad \text{else} \\
 		\end{cases} \\
 		f~\text{is st-flow} \Rightarrow \forall v \in V \backslash \{s,t\}. \quad  
 		\varphi_v' = \varphi_v = 0 
@@ -74,8 +74,8 @@
 	\forall e \in E: 0 \leq f_e' \leq c_e
 	\end{equation}
 	From \ref{eq:flux_cond_satis} and \ref{eq:flow_cond_satis} we can now conclude that
-	$$ f \text{is st-preflow} \Rightarrow f' \text{is st-preflow}$$
-	$$ f \text{is st-flow} \Rightarrow f' \text{is st-flow}$$
+	$$ f~\text{is st-preflow} \Rightarrow f'~\text{is st-preflow}$$
+	$$ f~\text{is st-flow} \Rightarrow f'~\text{is st-flow}$$
 	\hfill $\blacksquare$
 	
 	\subsection*{Show that $\varphi_s' = \varphi_s + \delta$}
@@ -92,9 +92,10 @@
 	\varphi_s &= \varphi_s + \varphi_{X\backslash\{s\}} &\text{using }\varphi_{X\backslash\{s\}} = 0~ \text{because }f~\text{is st-flow and }t \notin X\\
 	&= \varphi_X & \text{by definition of }\varphi_X\\
 	&= \varphi_X^+ - \varphi_X^- & \text{by definition of flux} \\
-	&\leq \varphi_X^+ &\text{using }\varphi_X^- \geq 0~\text{because }\forall e\in E. f_e \geq 0 \\
+	&\leq \varphi_X^+ &\text{using }\varphi_X^- \geq 0~\text{because }\forall e\in E.\: f_e \geq 0 \\
 	&= \sum_{vw \in XX^c} f_{vw} &\text{by definition of }\varphi_X^+ \\
-	&\leq \sum_{vw \in XX^c} c_{vw} &\text{because }\forall e \in E. f_e \leq c_e \\
+	&\leq \sum_{vw \in XX^c} c_{vw} &\text{because }\forall e \in
+                                          E. \: f_e \leq c_e \\
 	\end{align*} \hfill $\blacksquare$
 	
 	\section{Discussion of Lemma 5}
